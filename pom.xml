@@ -38,9 +38,11 @@
     <scala.binary.version>2.12</scala.binary.version>
     <dokka.version>0.9.17</dokka.version>
     <kotlin.version>1.2.71</kotlin.version>
+    <kotlin.jackson.version>2.9.7</kotlin.jackson.version>
     <lagom.version>[1.4.0,)</lagom.version>
     <ktlint.version>0.28.0</ktlint.version>
     <kotlintest.version>3.1.10</kotlintest.version>
+    <embedded.elasticsearch.version>2.7.0</embedded.elasticsearch.version>
     <antrun.plugin.version>1.8</antrun.plugin.version>
     <source.plugin.version>3.0.1</source.plugin.version>
     <jar.plugin.version>3.1.0</jar.plugin.version>
@@ -66,6 +68,16 @@
       <artifactId>kotlin-reflect</artifactId>
       <version>${kotlin.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-kotlin</artifactId>
+      <version>${kotlin.jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.taymyr</groupId>
+      <artifactId>lagom-extensions</artifactId>
+      <version>0.0.2</version>
+    </dependency>
     <!-- provided dependencies -->
     <dependency>
       <groupId>com.lightbend.lagom</groupId>
@@ -84,6 +96,18 @@
       <groupId>com.lightbend.lagom</groupId>
       <artifactId>lagom-javadsl-integration-client_${scala.binary.version}</artifactId>
       <version>${lagom.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.lightbend.lagom</groupId>
+      <artifactId>lagom-logback_${scala.binary.version}</artifactId>
+      <version>${lagom.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>pl.allegro.tech</groupId>
+      <artifactId>embedded-elasticsearch</artifactId>
+      <version>${embedded.elasticsearch.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -270,39 +294,6 @@
           <nexusUrl>https://oss.sonatype.org/</nexusUrl>
           <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.github.alexcojocaru</groupId>
-        <artifactId>elasticsearch-maven-plugin</artifactId>
-        <!-- REPLACE THE FOLLOWING WITH THE PLUGIN VERSION YOU NEED -->
-        <version>6.0</version>
-        <configuration>
-          <!-- REPLACE THE FOLLOWING WITH THE ELASTICSEARCH VERSION YOU NEED -->
-          <version>6.0.0</version>
-          <clusterName>test</clusterName>
-          <transportPort>9300</transportPort>
-          <httpPort>9200</httpPort>
-        </configuration>
-        <executions>
-          <!--
-              The elasticsearch maven plugin goals are by default bound to the
-              pre-integration-test and post-integration-test phases
-          -->
-          <execution>
-            <id>start-elasticsearch</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>runforked</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>stop-elasticsearch</id>
-            <phase>post-integration-test</phase>
-            <goals>
-              <goal>stop</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
