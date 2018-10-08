@@ -1,8 +1,8 @@
-package org.taymyr.lagom.elasticsearch.dsl.search
+package org.taymyr.lagom.elasticsearch.dsl.search.query
 
 data class MatchQuery(
     val match: Match
-) : Query {
+) : QueryBody {
 
     interface Match
 

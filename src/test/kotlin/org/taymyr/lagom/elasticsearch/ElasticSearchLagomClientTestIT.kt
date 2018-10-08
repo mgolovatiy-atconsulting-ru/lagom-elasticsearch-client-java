@@ -18,7 +18,9 @@ class ElasticSearchLagomClientTestIT : StringSpec() {
     init {
         "stage2 use elasticSearch" {
             shouldThrow<ExecutionException> {
-                elasticSearch.search("qwe", "qwe").invoke(QueryRoot(null, null, null, null)).toCompletableFuture().get()
+                elasticSearch.search("qwe", "qwe").invoke(
+                    QueryRoot(null, null, null, null, null, null)
+                ).toCompletableFuture().get()
             }
         }
         "stage3 auto initialize settings" {

@@ -24,8 +24,9 @@ class ElasticSearchLagomClientProgramaticallyIT : StringSpec() {
     init {
         "stage2 use elasticSearch" {
             val internalError = shouldThrow<ExecutionException> {
-                elasticSearch.search("qwe", "qwe").invoke(QueryRoot(null, null, null, null))
-                    .toCompletableFuture().get()
+                elasticSearch.search("qwe", "qwe").invoke(
+                    QueryRoot(null, null, null, null, null, null)
+                ).toCompletableFuture().get()
             }
         }
 

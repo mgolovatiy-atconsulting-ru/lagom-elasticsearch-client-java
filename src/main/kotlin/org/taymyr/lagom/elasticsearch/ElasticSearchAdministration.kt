@@ -9,7 +9,7 @@ import org.taymyr.lagom.elasticsearch.serialize.JsonBytes
 import java.io.File
 import java.util.concurrent.CompletionStage
 
-class ElasticSearchAdministration(
+open class ElasticSearchAdministration(
     private val elasticSearch: ElasticSearch,
     private val indexName: String,
     private val typeName: String

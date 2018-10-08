@@ -121,8 +121,8 @@
         <version>${kotlin.version}</version>
         <configuration>
           <args>
-            <arg>-Xjsr305=strict</arg>
             <arg>-Xjvm-default=enable</arg>
+            <arg>-Xjsr305=strict</arg>
           </args>
         </configuration>
         <executions>

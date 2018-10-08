@@ -1,12 +1,10 @@
-package org.taymyr.lagom.elasticsearch.dsl.search
+package org.taymyr.lagom.elasticsearch.dsl.search.query.term
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonInclude
 import java.util.OptionalInt
 
-data class RangeQuery(
-    val range: Range
-) : Query {
+data class RangeQuery(val range: Range) : TermLevelQuery {
 
     interface Range
 
